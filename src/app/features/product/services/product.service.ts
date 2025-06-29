@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Product } from '../models/product.class';
 import { MOCK_PRODUCTS } from '../data/mock-product';
 
@@ -6,8 +6,10 @@ import { MOCK_PRODUCTS } from '../data/mock-product';
   providedIn: 'root'
 })
 export class ProductService {
-  getAll(): Product[] {
-    return MOCK_PRODUCTS;
+  private readonly _products = signal<Product[]>(MOCK_PRODUCTS);
+
+  getAll() {
+    return this._products;
   }
 
   getBySlug(slug: string): Product | undefined {

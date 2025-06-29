@@ -1,9 +1,14 @@
 import { Routes } from '@angular/router';
-import { ProductPage } from './product.page';
+import { ProductOverviewComponent } from './components/overview.component';
+import { ProductDetailComponent } from './components/detail.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: ProductPage
+    component: ProductOverviewComponent
+  },
+  {
+    path: ':slug',
+    component: ProductDetailComponent
   }
 ];

@@ -30,6 +30,14 @@ export class CartService {
     this.save(updated);
   }
 
+  setQuantity(productId: string, quantity: number) {
+    const updated = this._items().map((item) =>
+      item.productId === productId ? { ...item, quantity } : item
+    );
+    this._items.set(updated);
+    this.save(updated);
+  }
+
   private save(items: CartItem[]) {
     localStorage.setItem('cart', JSON.stringify(items));
   }

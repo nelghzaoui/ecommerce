@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'tx-root',
-  imports: [],
+  imports: [RouterOutlet],
   template: `
     <header></header>
     <main>
-      <p>Thanks Nas!</p>
+      <router-outlet />
     </main>
     <footer></footer>
   `,
