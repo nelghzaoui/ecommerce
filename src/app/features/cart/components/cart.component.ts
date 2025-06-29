@@ -4,7 +4,13 @@ import { CartService } from '../services/cart.service';
 @Component({
   template: `
     <div class="max-w-4xl mx-auto px-4 py-8">
-      <h1 class="text-2xl font-bold mb-6 text-gray-800">Votre panier</h1>
+      <div class="flex justify-between items-baseline">
+        <h1 class="text-2xl font-bold mb-6 text-gray-800">Votre panier</h1>
+
+        <button (click)="clear()" class="text-sm text-red-500 hover:underline">
+          Vider le panier
+        </button>
+      </div>
 
       <div class="space-y-6">
         @for (item of items(); track item.productId) {
@@ -52,8 +58,8 @@ import { CartService } from '../services/cart.service';
   `
 })
 export class CartComponent {
-  private cart = inject(CartService);
-  readonly items = this.cart.items;
+  private cartService = inject(CartService);
+  readonly items = this.cartService.items;
 
   readonly total = computed(() =>
     this.items().reduce((sum, item) => sum + item.price * item.quantity, 0)
@@ -62,10 +68,15 @@ export class CartComponent {
   updateQuantity(event: Event, productId: string) {
     const input = event.target as HTMLInputElement;
     const quantity = Number(input.value);
-    if (quantity > 0) this.cart.setQuantity(productId, quantity);
+    if (quantity > 0) this.cartService.setQuantity(productId, quantity);
   }
 
   remove(productId: string) {
-    this.cart.removeFromCart(productId);
+    this.cartService.removeFromCart(productId);
+  }
+
+  clear() {
+    const confirmClear = confirm('Voulez-vous vraiment vider votre panier ?');
+    if (confirmClear) this.cartService.removeAll();
   }
 }

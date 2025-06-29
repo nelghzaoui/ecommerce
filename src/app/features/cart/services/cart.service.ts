@@ -30,6 +30,11 @@ export class CartService {
     this.save(updated);
   }
 
+  removeAll() {
+    this._items.set([]);
+    this.save([]);
+  }
+
   setQuantity(productId: string, quantity: number) {
     const updated = this._items().map((item) =>
       item.productId === productId ? { ...item, quantity } : item
