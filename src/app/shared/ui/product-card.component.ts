@@ -2,14 +2,13 @@ import { Component, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Product } from '../../features/product/models/product.class';
 import { ButtonComponent } from './button.component';
+import { CardComponent } from './card.component';
 
 @Component({
   selector: 'tx-product-card',
   template: `
     @if (product(); as product) {
-      <div
-        class="block border rounded-lg p-4 shadow-sm hover:shadow-md transition"
-      >
+      <tx-card>
         <img
           [src]="product.image"
           [alt]="product.name"
@@ -26,10 +25,10 @@ import { ButtonComponent } from './button.component';
           [isFull]="true"
           (clicked)="add.emit(product)"
         />
-      </div>
+      </tx-card>
     }
   `,
-  imports: [RouterLink, ButtonComponent]
+  imports: [RouterLink, ButtonComponent, CardComponent]
 })
 export class ProductCardComponent {
   product = input<Product>();
