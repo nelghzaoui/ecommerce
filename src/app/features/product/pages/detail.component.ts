@@ -1,8 +1,9 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product.class';
 import { CartService } from '../../cart/services/cart.service';
+import { ButtonComponent } from '../../../shared/ui/button.component';
 
 @Component({
   template: `
@@ -30,19 +31,21 @@ import { CartService } from '../../cart/services/cart.service';
               <p>{{ product.description }}</p>
             </div>
 
-            <button
-              class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-primary/90 transition"
-              (click)="addToCart(product)"
-            >
-              Ajouter au panier
-            </button>
+            <tx-button
+              [label]="'Ajouter au panier'"
+              [color]="'primary'"
+              [isFull]="true"
+              (clicked)="addToCart(product)"
+            />
           </div>
         </div>
       } @else {
         <div class="text-center py-20 text-gray-500">Produit introuvable.</div>
       }
     </div>
-  `
+    ,
+  `,
+  imports: [ButtonComponent]
 })
 export class ProductDetailComponent {
   private readonly route = inject(ActivatedRoute);

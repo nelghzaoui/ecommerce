@@ -1,6 +1,7 @@
 import { Component, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Product } from '../../features/product/models/product.class';
+import { ButtonComponent } from './button.component';
 
 @Component({
   selector: 'tx-product-card',
@@ -19,16 +20,16 @@ import { Product } from '../../features/product/models/product.class';
         </a>
         <p class="text-primary font-bold mt-2">{{ product.price }} €</p>
 
-        <button
-          class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-primary/90 transition"
-          (click)="add.emit(product)"
-        >
-          Ajouter au panier
-        </button>
+        <tx-button
+          [label]="'Ajouter au panier'"
+          [color]="'primary'"
+          [isFull]="true"
+          (clicked)="add.emit(product)"
+        />
       </div>
     }
   `,
-  imports: [RouterLink]
+  imports: [RouterLink, ButtonComponent]
 })
 export class ProductCardComponent {
   product = input<Product>();
