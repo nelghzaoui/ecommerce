@@ -1,14 +1,16 @@
 import { Routes } from '@angular/router';
-import { ProductOverviewComponent } from './components/overview.component';
-import { ProductDetailComponent } from './components/detail.component';
 
-export const routes: Routes = [
+export const PRODUCT_ROUTES: Routes = [
   {
     path: '',
-    component: ProductOverviewComponent
+    loadComponent: () =>
+      import('./pages/overview.component').then(
+        (m) => m.ProductOverviewComponent
+      )
   },
   {
     path: ':slug',
-    component: ProductDetailComponent
+    loadComponent: () =>
+      import('./pages/detail.component').then((m) => m.ProductDetailComponent)
   }
 ];
