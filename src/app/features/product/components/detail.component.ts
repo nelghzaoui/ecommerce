@@ -42,8 +42,7 @@ import { CartService } from '../../cart/services/cart.service';
         <div class="text-center py-20 text-gray-500">Produit introuvable.</div>
       }
     </div>
-  `,
-  styles: [``]
+  `
 })
 export class ProductDetailComponent {
   private readonly route = inject(ActivatedRoute);

@@ -49,8 +49,7 @@ import { CartService } from '../services/cart.service';
         </div>
       </div>
     </div>
-  `,
-  styles: [``]
+  `
 })
 export class CartComponent {
   private cart = inject(CartService);

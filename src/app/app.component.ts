@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from './shared/ui/navbar.component';
 
 @Component({
   selector: 'tx-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NavbarComponent],
   template: `
-    <header></header>
-    <main>
-      <router-outlet />
-    </main>
-    <footer></footer>
+    <header>
+      <tx-navbar />
+      <main>
+        <router-outlet />
+      </main>
+      <footer></footer>
+    </header>
   `,
   styles: ``
 })
