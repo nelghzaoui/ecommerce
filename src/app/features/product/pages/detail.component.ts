@@ -1,9 +1,9 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ButtonComponent } from '@shared/ui/button.component';
+import { CartService } from '../../cart/services/cart.service';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product.class';
-import { CartService } from '../../cart/services/cart.service';
-import { ButtonComponent } from '../../../shared/ui/button.component';
 
 @Component({
   template: `
