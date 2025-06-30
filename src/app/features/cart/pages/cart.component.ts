@@ -1,5 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { CartService } from '../services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   template: `
@@ -29,8 +30,9 @@ import { CartService } from '../services/cart.service';
                 <label
                   for="qty-{{ item.productId }}"
                   class="text-sm text-gray-600"
-                  >Quantité :</label
                 >
+                  Quantité :
+                </label>
                 <input
                   type="number"
                   min="1"
@@ -58,7 +60,8 @@ import { CartService } from '../services/cart.service';
   `
 })
 export class CartComponent {
-  private cartService = inject(CartService);
+  private readonly cartService = inject(CartService);
+  private readonly router = inject(Router);
   readonly items = this.cartService.items;
 
   readonly total = computed(() =>
@@ -77,6 +80,9 @@ export class CartComponent {
 
   clear() {
     const confirmClear = confirm('Voulez-vous vraiment vider votre panier ?');
-    if (confirmClear) this.cartService.removeAll();
+    if (confirmClear) {
+      this.cartService.removeAll();
+      this.router.navigate(['/products']);
+    }
   }
 }
