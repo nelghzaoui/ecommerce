@@ -15,4 +15,16 @@ export class ProductService {
   getBySlug(slug: string): Product | undefined {
     return MOCK_PRODUCTS.find((p) => p.slug === slug);
   }
+
+  filterProducts(
+    products: Product[],
+    category: string | null,
+    maxPrice: number | null
+  ): Product[] {
+    return products.filter(
+      (p) =>
+        (!category || p.category === category) &&
+        (!maxPrice || p.price <= maxPrice)
+    );
+  }
 }
