@@ -15,7 +15,7 @@ import {
       [attr.aria-label]="alt() || null"
       [disabled]="isDisabled()"
       [attr.class]="classes()"
-      (click)="onClick()"
+      (click)="clicked.emit()"
     >
       <div class="flex items-center gap-2 justify-center">
         {{ label() }}
@@ -31,10 +31,6 @@ export class ButtonComponent {
   isDisabled = input<boolean>(false);
   isFull = input<boolean>(false);
   clicked = output<void>();
-
-  onClick() {
-    if (!this.isDisabled()) this.clicked.emit();
-  }
 
   readonly classes = computed(() => {
     const base = 'font-semibold px-4 py-2 rounded transition duration-200';
